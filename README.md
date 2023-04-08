@@ -34,7 +34,7 @@ go get -u github.com/robicode/browser
 ```go
 import "github.com/robicode/browser"
 
-browser := Browser.New("Some User Agent", "en-us")
+browser := browser.New("Some User Agent", "en-us")
 
 // General info
 browser.IsBot()
