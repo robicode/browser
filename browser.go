@@ -465,7 +465,7 @@ func (b *Browser) IsWeibo(expectedVersion ...string) bool {
 
 // WebkitFullVersion returns the version of Webkit in use or "0.0"
 func (b *Browser) WebkitFullVersion() string {
-	matches := regexp.MustCompile(``).FindStringSubmatch(b.ua)
+	matches := regexp.MustCompile(`AppleWebKit/([\d.]+)`).FindStringSubmatch(b.ua)
 	if len(matches) > 0 {
 		return matches[1]
 	}
@@ -476,4 +476,34 @@ func (b *Browser) WebkitFullVersion() string {
 // IsProxy detects if the browser is a proxy browser
 func (b *Browser) IsProxy() bool {
 	return b.IsNokia() || b.IsUcBrowser() || b.IsOperaMini()
+}
+
+// IsCompatibilityView detects if IE is running in Compatibility View
+func (b *Browser) IsCompatibilityView() bool {
+	ie := newInternetExplorer(b.ua)
+	if !ie.Matches() {
+		return false
+	}
+
+	return ie.IsCompatibilityView()
+}
+
+// MSIEVersion detects the IE version of browser
+func (b *Browser) MSIEVersion() string {
+	ie := newInternetExplorer(b.ua)
+	if !ie.Matches() {
+		return "0"
+	}
+
+	return ie.MSIEVersion()
+}
+
+// MSIEFullVersion returns the full version of IE in use
+func (b *Browser) MSIEFullVersion() string {
+	ie := newInternetExplorer(b.ua)
+	if !ie.Matches() {
+		return "0.0"
+	}
+
+	return ie.MSIEFullVersion()
 }

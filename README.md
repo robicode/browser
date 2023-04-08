@@ -213,8 +213,8 @@ spec:
 Internet Explorer has a compatibility view mode that allows newer versions
 (IE8+) to run as an older version. Browser will always return the navigator
 version, ignoring the compatibility view version, when defined. If you need to
-get the engine's version, you have to use `Browser#msie_version` and
-`Browser#msie_full_version`.
+get the engine's version, you have to use `browse.MSIEVersion()` and
+`browse.MSIEFullVersion()`.
 
 So, let's say an user activates compatibility view in a IE11 browser. This is
 what you'll get:
@@ -229,7 +229,7 @@ browser.FullVersion()
 browser.MSIEVersion()
 #=> 7
 
-browser.MSIEFullVersion
+browser.MSIEFullVersion()
 #=> 7.0
 
 browser.IsCompatibilityView()

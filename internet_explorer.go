@@ -3,6 +3,7 @@ package browser
 import (
 	"fmt"
 	"regexp"
+	"strconv"
 	"strings"
 )
 
@@ -52,7 +53,7 @@ func (i *InternetExplorer) FullVersion() string {
 	return fmt.Sprintf("%s.0", i.ieVersion())
 }
 
-func (i *InternetExplorer) msieFullVersion() string {
+func (i *InternetExplorer) MSIEFullVersion() string {
 	matches := regexp.MustCompile(`MSIE ([\d.]+)|Trident/.*?; rv:([\d.]+)`).FindStringSubmatch(i.userAgent)
 	if len(matches) > 0 {
 		if len(matches) > 1 {
@@ -65,8 +66,8 @@ func (i *InternetExplorer) msieFullVersion() string {
 	}
 }
 
-func (i *InternetExplorer) msieVersion() string {
-	return strings.Split(i.msieFullVersion(), ".")[0]
+func (i *InternetExplorer) MSIEVersion() string {
+	return strings.Split(i.MSIEFullVersion(), ".")[0]
 }
 
 func (i *InternetExplorer) tridentVersion() string {
@@ -81,8 +82,26 @@ func (i *InternetExplorer) tridentVersion() string {
 func (i *InternetExplorer) ieVersion() string {
 	v, ok := tridentMapping[i.tridentVersion()]
 	if !ok {
-		return i.msieVersion()
+		return i.MSIEVersion()
 	} else {
 		return v
 	}
+}
+
+func (i *InternetExplorer) IsCompatibilityView() bool {
+	tv, err := strconv.Atoi(i.tridentVersion())
+	if err != nil {
+		return false
+	}
+
+	iv, err := strconv.Atoi(i.MSIEVersion())
+	if err != nil {
+		return false
+	}
+
+	if tv > 0 {
+		return iv < (tv + 4)
+	}
+
+	return false
 }
