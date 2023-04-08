@@ -247,7 +247,7 @@ to do whatever you want.
 
 ```go
 // iPad's Safari running as web app mode.
-browser = browser.Browser.new("Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405")
+browser = browser.New("Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405")
 
 browser.isSafari()
 #=> false
@@ -269,7 +269,7 @@ following requirements will be considered a bot.
 - Any known bot listed under
   [bots.yml](https://github.com/fnando/browser/blob/master/bots.yml)
 
-*The following is irrelevant for Go:
+The following is irrelevant for Go:
 To add custom matchers, you can add a callable object to
 `Browser::Bot.matchers`. The following example matches everything that has a
 `externalhit` substring on it. The bot name will always be `General Bot`.
@@ -292,7 +292,6 @@ To restore v2's bot detection, remove the following matchers:
 Browser::Bot.matchers.delete(Browser::Bot::KeywordMatcher)
 Browser::Bot.matchers.delete(Browser::Bot::EmptyUserAgentMatcher)
 ```
-*
 
 To add a matcher in Go, create a struct that follows the BotMatcher interface and add it to the `matchers` array
 in `NewBot` in the `bot.go` file. For example, to create the above matcher in Go, you'd a file similar to the following:
