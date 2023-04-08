@@ -34,7 +34,7 @@ go get -u github.com/robicode/browser
 ```go
 import "github.com/robicode/browser"
 
-browser := browser.New("Some User Agent", "en-us")
+browser := browser.New("path to browser yaml files", "Some User Agent", "en-us")
 
 // General info
 browser.IsBot()
@@ -247,7 +247,7 @@ to do whatever you want.
 
 ```go
 // iPad's Safari running as web app mode.
-browser = browser.New("Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405")
+browser = browser.New(filepath.Join(app.HomeDirectory, "data", "browser"), "Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405")
 
 browser.isSafari()
 #=> false
@@ -327,7 +327,7 @@ func (e *ExternalHitMatcher) Name() string {
 - User agent has a size limit of 2048 bytes.
 - Accept-Language has a size limit of 2048 bytes.
 
-If size is not respected, then `browser.New` will return an error.
+If size is not respected, then `browser.New()` will return an error.
 
 ## Development
 
