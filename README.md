@@ -394,6 +394,7 @@ otherwise
 ## Contributors
 
 - https://github.com/fnando/browser/contributors
+- https://github.com/robicode/browser/contributors
 
 ## License
 
