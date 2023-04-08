@@ -85,8 +85,8 @@ browser.Device // (*Device)
 browser.Device.ID()
 browser.Device.Name()
 browser.Device.IsUnknown()
-browser.device.IsblackberryPlaybook()
-browser.device.Console()
+browser.Device.IsblackberryPlaybook()
+browser.Device.IsConsole()
 browser.Device.IsIpad()
 browser.Device.IsIphone()
 browser.Device.IsIpodTouch()
@@ -400,4 +400,4 @@ otherwise
 
 (The MIT License)
 
-Please see the LICENSE file.
+Please see the [LICENSE](https://github.com/robicode/browser/blob/main/LICENSE) file.
